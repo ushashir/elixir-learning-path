@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Elixir Learning Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .cover {
+            text-align: center;
+            padding: 80px 0;
+            border-bottom: 3px solid #6b46c1;
+            margin-bottom: 60px;
+        }
+        
+        .cover h1 {
+            font-size: 48px;
+            color: #6b46c1;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cover .subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .cover .author {
+            font-size: 18px;
+            color: #999;
+            margin-top: 60px;
+        }
+        
+        h2 {
+            color: #6b46c1;
+            font-size: 32px;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        h3 {
+            color: #4a5568;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+        }
+        
+        h4 {
+            color: #2d3748;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0 30px 0;
+        }
+        
+        .day-header h2 {
+            color: white;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .day-header .focus {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-inline {
+            background: #edf2f7;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .practice-section {
+            background: #faf5ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .practice-section h4 {
+            color: #6b46c1;
+        }
+        
+        .resources {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .project-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .project-box h3, .project-box h4 {
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #6b46c1;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #6b46c1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .print-button:hover {
+            background: #553c9a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 40px;
+            }
+            
+            .print-button {
+                display: none;
+            }
+            
+            .day-header, .project-box {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">📄 Download PDF</button>
+    
+    <div class="container">
+        <div class="cover">
+            <h1>🧪 7-Day Elixir Learning Guide</h1>
+            <div class="subtitle">From Foundations to Production-Ready Applications</div>
+            <div class="author">Your Complete Journey into Functional Programming & Phoenix</div>
+        </div>
+
+        <h2>📖 Introduction</h2>
+        <p>Welcome to your intensive 7-day journey into Elixir and Phoenix! This guide will take you from complete beginner to building production-ready real-time applications. Elixir is a dynamic, functional language designed for building scalable and maintainable applications, leveraging the Erlang VM known for running low-latency, distributed, and fault-tolerant systems.</p>
+        
+        <div class="info-box">
+            <strong>What Makes Elixir Special?</strong>
+            <ul>
+                <li>Functional programming with immutable data</li>
+                <li>Powerful concurrency model with lightweight processes</li>
+                <li>Fault-tolerance built into the core</li>
+                <li>Phoenix framework for real-time web applications</li>
+                <li>LiveView for reactive UIs without writing JavaScript</li>
+            </ul>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 1 — Elixir Foundations</h2>
+            <div class="focus">Focus: Syntax, data types, immutability, pattern matching</div>
+        </div>
+
+        <h3>Installing Elixir</h3>
+        <p>Before diving in, you need to install Elixir on your system:</p>
+        
+        <h4>macOS</h4>
+        <div class="code-block">brew install elixir</div>
+        
+        <h4>Ubuntu/Debian</h4>
+        <div class="code-block">sudo apt-get install elixir</div>
+        
+        <h4>Windows</h4>
+        <p>Download the installer from <span class="code-inline">elixir-lang.org</span> or use Chocolatey:</p>
+        <div class="code-block">choco install elixir</div>
+        
+        <p>Verify installation:</p>
+        <div class="code-block">elixir --version</div>
+
+        <h3>IEx - Interactive Elixir Shell</h3>
+        <p>The Interactive Elixir shell (IEx) is your playground for experimentation. Launch it by typing:</p>
+        <div class="code-block">iex</div>
+        
+        <p>Try these commands:</p>
+        <div class="code-block">iex> 1 + 1
+2
+iex> "Hello" <> " World"
+"Hello World"
+iex> h(Enum.map)  # Get documentation for Enum.map</div>
+
+        <h3>Basic Syntax</h3>
+        
+        <h4>Variables</h4>
+        <div class="code-block">name = "Shir"
+age = 25
+is_active = true</div>
+        
+        <div class="warning-box">
+            <strong>Important:</strong> In Elixir, variables are immutable! When you "reassign" a variable, you're actually creating a new binding, not modifying the original value.
+        </div>
+
+        <h3>Data Types</h3>
+        
+        <h4>Integers and Floats</h4>
+        <div class="code-block">integer = 42
+float = 3.14
+large_number = 1_000_000  # Underscores for readability
+hex = 0x1F  # Hexadecimal
+binary = 0b1010  # Binary</div>
+
+        <h4>Atoms</h4>
+        <p>Atoms are constants whose name is their value. They're incredibly efficient and commonly used throughout Elixir.</p>
+        <div class="code-block">:ok
+:error
+:apple
+:hello_world
+true  # true is actually the atom :true
+false # false is actually the atom :false
+nil   # nil is actually the atom :nil</div>
+
+        <h4>Strings vs Charlists</h4>
+        <div class="code-block"># Strings (UTF-8 encoded binaries)
+string = "Hello World"
+multiline = """
+This is a
+multiline string
+"""
+
+# Charlists (lists of code points)
+charlist = 'hello'  # [104, 101, 108, 108, 111]</div>
+
+        <div class="info-box">
+            <strong>When to use what?</strong> Use strings (double quotes) for most text. Use charlists (single quotes) only when interfacing with Erlang libraries that require them.
+        </div>
+
+        <h4>Tuples</h4>
+        <p>Tuples store a fixed number of elements contiguously in memory.</p>
+        <div class="code-block">person = {"Shir", 25, :active}
+coordinates = {10.5, 20.3}
+response = {:ok, "Success"}
+error = {:error, "Not found"}</div>
+
+        <h4>Lists</h4>
+        <p>Lists are linked data structures, perfect for recursive algorithms.</p>
+        <div class="code-block">numbers = [1, 2, 3, 4, 5]
+mixed = [1, "two", :three, 4.0]
+empty = []
+
+# List operations
+[head | tail] = [1, 2, 3, 4]  # head = 1, tail = [2, 3, 4]
+[0 | numbers]  # Prepending: [0, 1, 2, 3, 4, 5]
+numbers ++ [6, 7]  # Concatenation: [1, 2, 3, 4, 5, 6, 7]</div>
+
+        <h4>Maps</h4>
+        <p>Maps are key-value stores and the go-to data structure for structured data.</p>
+        <div class="code-block">user = %{name: "Shir", age: 25, email: "shir@example.com"}
+scores = %{"Alice" => 100, "Bob" => 85}
+
+# Accessing values
+user[:name]  # "Shir"
+user.name    # "Shir" (only works with atom keys)
+
+# Updating (returns new map)
+updated_user = %{user | age: 26}
+new_user = Map.put(user, :role, "admin")</div>
+
+        <h3>Immutability</h3>
+        <p>Immutability is a core concept in Elixir. Data never changes; instead, operations create new data structures.</p>
+        <div class="code-block">list = [1, 2, 3]
+new_list = [0 | list]  # [0, 1, 2, 3]
+# list is still [1, 2, 3]
+
+user = %{name: "Shir"}
+updated_user = Map.put(user, :age, 25)
+# user is still %{name: "Shir"}</div>
+
+        <div class="success-box">
+            <strong>Why immutability?</strong>
+            <ul>
+                <li>Eliminates entire classes of bugs</li>
+                <li>Makes concurrent programming safe</li>
+                <li>Enables powerful pattern matching</li>
+                <li>Simplifies reasoning about code</li>
+            </ul>
+        </div>
+
+        <h3>Pattern Matching</h3>
+        <p>Pattern matching is one of Elixir's most powerful features. The <span class="code-inline">=</span> operator is actually the match operator!</p>
+        
+        <div class="code-block"># Simple matching
+x = 1  # x is bound to 1
+1 = x  # This works! Pattern matches successfully
+
+# Tuple matching
+{:ok, value} = {:ok, 10}  # value is bound to 10
+{:ok, result} = {:error, "fail"}  # MatchError!
+
+# List matching
+[first, second, third] = [1, 2, 3]
+[head | tail] = [1, 2, 3, 4]  # head = 1, tail = [2, 3, 4]
+
+# Map matching
+%{name: person_name} = %{name: "Shir", age: 25}
+# person_name is bound to "Shir"
+
+# Ignoring values with underscore
+{:ok, _} = {:ok, "ignored value"}
+[_, second, _] = [1, 2, 3]  # second = 2</div>
+
+        <h3>Modules & Functions</h3>
+        
+        <h4>Defining Modules</h4>
+        <div class="code-block">defmodule Math do
+  def add(a, b) do
+    a + b
+  end
+  
+  def multiply(a, b), do: a * b  # One-liner syntax
+  
+  # Private function (only callable within module)
+  defp private_helper(x) do
+    x * 2
+  end
+end
+
+# Using the module
+Math.add(2, 3)      # 5
+Math.multiply(4, 5) # 20</div>
+
+        <h4>Function Clauses</h4>
+        <div class="code-block">defmodule Greeter do
+  def hello(""), do: "Please tell me your name"
+  def hello(name), do: "Hello, #{name}!"
+end
+
+Greeter.hello("")       # "Please tell me your name"
+Greeter.hello("Shir")   # "Hello, Shir!"</div>
+
+        <h4>Anonymous Functions</h4>
+        <div class="code-block">add = fn a, b -> a + b end
+add.(2, 3)  # 5 (note the dot before parentheses)
+
+# Shorthand syntax
+multiply = &(&1 * &2)
+multiply.(4, 5)  # 20</div>
+
+        <div class="practice-section">
+            <h4>Day 1 Practice Exercises</h4>
+            
+            <p><strong>Exercise 1: Swap Values in a Tuple</strong></p>
+            <div class="code-block">defmodule TupleHelper do
+  def swap({a, b}), do: {b, a}
+end
+
+TupleHelper.swap({1, 2})  # {2, 1}</div>
+            
+            <p><strong>Exercise 2: User Record Management</strong></p>
+            <div class="code-block">defmodule UserManager do
+  def create_user(name, age) do
+    %{name: name, age: age, created_at: DateTime.utc_now()}
+  end
+  
+  def update_age(user, new_age) do
+    %{user | age: new_age}
+  end
+  
+  def add_email(user, email) do
+    Map.put(user, :email, email)
+  end
+end
+
+user = UserManager.create_user("Shir", 25)
+user = UserManager.update_age(user, 26)
+user = UserManager.add_email(user, "shir@example.com")</div>
+            
+            <p><strong>Exercise 3: Pattern Match on Status Tuples</strong></p>
+            <div class="code-block">defmodule ResponseHandler do
+  def handle({:ok, data}) do
+    "Success: #{data}"
+  end
+  
+  def handle({:error, reason}) do
+    "Error: #{reason}"
+  end
+  
+  def handle(_) do
+    "Unknown response"
+  end
+end
+
+ResponseHandler.handle({:ok, "Data loaded"})
+ResponseHandler.handle({:error, "Network timeout"})</div>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 2 — Control Flow, Functions & Recursion</h2>
+            <div class="focus">Focus: Conditionals, loops (Elixir-style), function clauses</div>
+        </div>
+
+        <h3>Control Flow Structures</h3>
+        
+        <h4>if and unless</h4>
+        <div class="code-block">if age >= 18 do
+  "Adult"
+else
+  "Minor"
+end
+
+unless is_banned do
+  "Welcome!"
+else
+  "Access denied"
+end
+
+# One-liner
+status = if age >= 18, do: "Adult", else: "Minor"</div>
+
+        <h4>case</h4>
+        <p>Case allows you to compare a value against many patterns until a match is found.</p>
+        <div class="code-block">case {1, 2, 3} do
+  {4, 5, 6} ->
+    "This won't match"
+  {1, x, 3} ->
+    "This matches and binds x to 2"
+  _ ->
+    "This would match any value"
+end
+
+# Practical example
+case File.read("config.txt") do
+  {:ok, contents} ->
+    "File contents: #{contents}"
+  {:error, :enoent} ->
+    "File not found"
+  {:error, reason} ->
+    "Error: #{reason}"
+end</div>
+
+        <h4>cond</h4>
+        <p>Cond is useful when you need to check multiple conditions.</p>
+        <div class="code-block">cond do
+  age < 13 -> "Child"
+  age < 18 -> "Teenager"
+  age < 65 -> "Adult"
+  true -> "Senior"  # Default case
+end</div>
+
+        <h3>Functions Deep Dive</h3>
+        
+        <h4>Anonymous Functions with Pattern Matching</h4>
+        <div class="code-block">handle_response = fn
+  {:ok, data} -> "Success: #{data}"
+  {:error, reason} -> "Error: #{reason}"
+  _ -> "Unknown response"
+end
+
+handle_response.({:ok, "Connected"})</div>
+
+        <h4>Function Guards</h4>
+        <p>Guards allow you to add additional constraints to pattern matching.</p>
+        <div class="code-block">defmodule NumberChecker do
+  def check(x) when x < 0, do: "Negative"
+  def check(x) when x == 0, do: "Zero"
+  def check(x) when x > 0, do: "Positive"
+end
+
+defmodule Account do
+  def withdraw(balance, amount) when amount <= balance do
+    {:ok, balance - amount}
+  end
+  
+  def withdraw(balance, amount) when amount > balance do
+    {:error, "Insufficient funds"}
+  end
+end</div>
+
+        <h3>Recursion: The Elixir Way of Looping</h3>
+        <p>Elixir has no traditional for or while loops. Instead, we use recursion!</p>
+        
+        <h4>Basic Recursion Pattern</h4>
+        <div class="code-block">defmodule Counter do
+  def count_down(0), do: IO.puts("Blast off!")
+  
+  def count_down(n) when n > 0 do
+    IO.puts(n)
+    count_down(n - 1)
+  end
+end
+
+Counter.count_down(5)</div>
+
+        <h4>Tail Call Optimization</h4>
+        <p>Elixir optimizes tail-recursive functions, meaning they don't consume stack space.</p>
+        <div class="code-block">defmodule Sum do
+  # Not tail-recursive (operation after recursive call)
+  def sum([]), do: 0
+  def sum([head | tail]), do: head + sum(tail)
+  
+  # Tail-recursive (using accumulator)
+  def sum_tail(list), do: do_sum(list, 0)
+  
+  defp do_sum([], acc), do: acc
+  defp do_sum([head | tail], acc) do
+    do_sum(tail, acc + head)
+  end
+end</div>
+
+        <div class="practice-section">
+            <h4>Day 2 Practice Exercises</h4>
+            
+            <p><strong>Exercise 1: Factorial</strong></p>
+            <div class="code-block">defmodule Math do
+  def factorial(0), do: 1
+  def factorial(n) when n > 0 do
+    n * factorial(n - 1)
+  end
+  
+  # Tail-recursive version
+  def factorial_tail(n), do: do_factorial(n, 1)
+  
+  defp do_factorial(0, acc), do: acc
+  defp do_factorial(n, acc) do
+    do_factorial(n - 1, n * acc)
+  end
+end</div>
+            
+            <p><strong>Exercise 2: Fibonacci</strong></p>
+            <div class="code-block">defmodule Fibonacci do
+  def fib(0), do: 0
+  def fib(1), do: 1
+  def fib(n) when n > 1 do
+    fib(n - 1) + fib(n - 2)
+  end
+  
+  # More efficient tail-recursive version
+  def fib_tail(n), do: do_fib(n, 0, 1)
+  
+  defp do_fib(0, a, _b), do: a
+  defp do_fib(n, a, b) do
+    do_fib(n - 1, b, a + b)
+  end
+end</div>
+            
+            <p><strong>Exercise 3: Sum of a List</strong></p>
+            <div class="code-block">defmodule ListOps do
+  def sum([]), do: 0
+  def sum([head | tail]), do: head + sum(tail)
+end</div>
+            
+            <p><strong>Exercise 4: Maximum Element</strong></p>
+            <div class="code-block">defmodule ListOps do
+  def max([single]), do: single
+  def max([head | tail]) do
+    tail_max = max(tail)
+    if head > tail_max, do: head, else: tail_max
+  end
+end</div>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 3 — Data Structures & Algorithms in Elixir</h2>
+            <div class="focus">Focus: Thinking functionally with built-in modules</div>
+        </div>
+
+        <h3>Core Data Structures Revisited</h3>
+        
+        <h4>Lists (Linked Lists)</h4>
+        <p>Lists in Elixir are implemented as linked lists, making prepending O(1) but appending O(n).</p>
+        <div class="code-block"># Fast operations
+list = [1, 2, 3]
+[0 | list]  # O(1) - [0, 1, 2, 3]
+
+# Slow operation
+list ++ [4]  # O(n) - has to traverse entire list
+
+# Better approach for building lists
+Enum.reduce([1, 2, 3], [], fn x, acc -> [x * 2 | acc] end)
+|> Enum.reverse()</div>
+
+        <h4>Keyword Lists</h4>
+        <p>Keyword lists are lists of tuples where the first element is an atom. Often used for options.</p>
+        <div class="code-block">options = [name: "Shir", age: 25, age: 26]  # Duplicates allowed!
+options[:name]  # "Shir"
+options[:age]   # 25 (returns first match)
+
+# Common in function options
+String.split("hello world", " ", trim: true)</div>
+
+        <h4>Maps</h4>
+        <div class="code-block">map = %{a: 1, b: 2}
+Map.get(map, :a)        # 1
+Map.get(map, :c, 0)     # 0 (default value)
+Map.put(map, :c, 3)     # %{a: 1, b: 2, c: 3}
+Map.update!(map, :a, &(&1 + 10))  # %{a: 11, b: 2}</div>
+
+        <h3>The Enum Module</h3>
+        <p>Enum is your best friend for working with collections. It works with any enumerable.</p>
+        
+        <div class="code-block"># Mapping
+Enum.map([1, 2, 3], fn x -> x * 2 end)  # [2, 4, 6]
+Enum.map([1, 2, 3], &(&1 * 2))          # Same, shorthand
+
+# Filtering
+Enum.filter([1, 2, 3, 4], fn x -> rem(x, 2) == 0 end)  # [2, 4]
+
+# Reducing (folding)
+Enum.reduce([1, 2, 3, 4], 0, fn x, acc -> x + acc end)  # 10
+
+# Combining operations (using pipe operator)
+[1, 2, 3, 4, 5]
+|> Enum.filter(&(rem(&1, 2) == 0))
+|> Enum.map(&(&1 * 3))
+|> Enum.sum()  # 18
+
+# Other useful functions
+Enum.any?([1, 2, 3], &(&1 > 2))    # true
+Enum.all?([1, 2, 3], &(&1 > 0))    # true
+Enum.find([1, 2, 3], &(&1 > 2))    # 3
+Enum.take([1, 2, 3, 4, 5], 3)      # [1, 2, 3]
+Enum.drop([1, 2, 3, 4, 5], 2)      # [3, 4, 5]
+Enum.chunk_every([1, 2, 3, 4], 2)  # [[1, 2], [3, 4]]</div>
+
+        <h3>The Stream Module</h3>
+        <p>Streams are lazy enumerables. They don't process elements until explicitly asked to.</p>
+        <div class="code-block"># Eager (processes entire list)
+[1, 2, 3]
+|> Enum.map(&(&1 * 2))
+|> Enum.filter(&(&1 > 2))
+
+# Lazy (only processes when needed)
+[1, 2, 3]
+|> Stream.map(&(&1 * 2))
+|> Stream.filter(&(&1 > 2))
+|> Enum.take(1)  # Only processes until first match!
+
+# Infinite streams
+Stream.cycle([1, 2, 3])
+|> Stream.take(10)
+|> Enum.to_list()  # [1, 2, 3, 1, 2, 3, 1, 2, 3, 1]</div>
+
+        <h3>The String Module</h3>
+        <div class="code-block">String.length("hello")              # 5
+String.upcase("hello")              # "HELLO"
+String.split("hello world")         # ["hello", "world"]
+String.contains?("hello", "ell")    # true
+String.replace("hello", "l", "L")   # "heLLo"
+String.trim("  hello  ")            # "hello"</div>
+
+        <div class="practice-section">
+            <h4>Day 3 Practice Exercises</h4>
+            
+            <p><strong>Exercise 1: Reverse a List</strong></p>
+            <div class="code-block">defmodule ListOps do
+  def reverse(list), do: do_reverse(list, [])
+  
+  defp do_reverse([], acc), do: acc
+  defp do_reverse([head | tail], acc) do
+    do_reverse(tail, [head | acc])
+  end
+end
+
+# Or use the built-in
+Enum.reverse([1, 2, 3])</div>
+            
+            <p><strong>Exercise 2: Count Word Frequency</strong></p>
+            <div class="code-block">defmodule WordCounter do
+  def count_words(text) do
+    text
+    |> String.downcase()
+    |> String.split(~r/\W+/, trim: true)
+    |> Enum.reduce(%{}, fn word, acc ->
+      Map.update(acc, word, 1, &(&1 + 1))
+    end)
+  end
+end
+
+WordCounter.count_words("hello world hello")
+# %{"hello" => 2, "world" => 1}</div>
+            
+            <p><strong>Exercise 3: Find Duplicates</strong></p>
+            <div class="code-block">defmodule ListOps do
+  def find_duplicates(list) do
+    list
+    |> Enum.frequencies()
+    |> Enum.filter(fn {_key, count} -> count > 1 end)
+    |> Enum.map(fn {key, _count} -> key end)
+  end
+end
+
+ListOps.find_duplicates([1, 2, 3, 2, 4, 3, 5])
+# [2, 3]</div>
+            
+            <p><strong>Exercise 4: Binary Search (Recursive)</strong></p>
+            <div class="code-block">defmodule Search do
+  def binary_search(list, target) do
+    sorted = Enum.sort(list)
+    do_search(sorted, target, 0, length(sorted) - 1)
+  end
+  
+  defp do_search(_list, _target, low, high) when low > high do
+    {:error, :not_found}
+  end
+  
+  defp do_search(list, target, low, high) do
+    mid = div(low + high, 2)
+    mid_value = Enum.at(list, mid)
+    
+    cond do
+      mid_value == target -> {:ok, mid}
+      mid_value < target -> do_search(list, target, mid + 1, high)
+      mid_value > target -> do_search(list, target, low, mid - 1)
+    end
+  end
+end</div>
+            
+            <p><strong>Exercise 5: Simple Stack Implementation</strong></p>
+            <div class="code-block">defmodule Stack do
+  def new, do: []
+  
+  def push(stack, item), do: [item | stack]
+  
+  def pop([]), do: {:error, :empty}
+  def pop([head | tail]), do: {:ok, head, tail}
+  
+  def peek([]), do: {:error, :empty}
+  def peek([head | _tail]), do: {:ok, head}
+  
+  def size(stack), do: length(stack)
+  def empty?(stack), do: stack == []
+end
+
+# Usage
+stack = Stack.new()
+stack = Stack.push(stack, 1)
+stack = Stack.push(stack, 2)
+{:ok, value, stack} = Stack.pop(stack)  # value = 2</div>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 4 — Concurrency & OTP Basics</h2>
+            <div class="focus">Focus: Processes, message passing, GenServer, Supervisors</div>
+        </div>
+
+        <h3>Why Concurrency Matters</h3>
+        <p>Elixir processes are not OS processes. They're lightweight, isolated, and run concurrently on the BEAM VM. You can have millions of them!</p>
+
+        <div class="success-box">
+            <strong>Elixir Process Benefits:</strong>
+            <ul>
+                <li>Extremely lightweight (few KB of memory)</li>
+                <li>Complete isolation (no shared memory)</li>
+                <li>Built-in fault tolerance</li>
+                <li>Message-based communication</li>
+                <li>Preemptive scheduling</li>
+            </ul>
+        </div>
+
+        <h3>Basic Processes</h3>
+        
+        <h4>Spawning Processes</h4>
+        <div class="code-block"># Spawn a simple process
+pid = spawn(fn ->
+  IO.puts("Hello from process #{inspect(self())}")
+end)
+
+# Spawn with arguments
+pid = spawn(fn ->
+  receive do
+    {:hello, name} -> IO.puts("Hello #{name}")
+  end
+end)
+
+# Send a message
+send(pid, {:hello, "Shir"})</div>
+
+        <h4>Message Passing</h4>
+        <div class="code-block">defmodule Messenger do
+  def start do
+    spawn(fn -> loop() end)
+  end
+  
+  defp loop do
+    receive do
+      {:greet, name, caller} ->
+        send(caller, {:ok, "Hello #{name}!"})
+        loop()
+      
+      {:stop} ->
+        IO.puts("Stopping...")
+        :ok
+      
+      _ ->
+        IO.puts("Unknown message")
+        loop()
+    end
+  end
+end
+
+# Usage
+pid = Messenger.start()
+send(pid, {:greet, "Shir", self()})
+receive do
+  {:ok, message} -> IO.puts(message)
+end</div>
+
+        <h3>GenServer: Generic Server Behavior</h3>
+        <p>GenServer is OTP's abstraction for building server processes. It handles all the boilerplate of receive loops and message handling.</p>
+
+        <div class="code-block">defmodule Counter do
+  use GenServer
+  
+  # Client API
+  def start_link(initial_value \\ 0) do
+    GenServer.start_link(__MODULE__, initial_value, name: __MODULE__)
+  end
+  
+  def increment do
+    GenServer.cast(__MODULE__, :increment)
+  end
+  
+  def get_value do
+    GenServer.call(__MODULE__, :get_value)
+  end
+  
+  # Server Callbacks
+  @impl true
+  def init(initial_value) do
+    {:ok, initial_value}
+  end
+  
+  @impl true
+  def handle_cast(:increment, state) do
+    {:noreply, state + 1}
+  end
+  
+  @impl true
+  def handle_call(:get_value, _from, state) do
+    {:reply, state, state}
+  end
+end
+
+# Usage
+{:ok, _pid} = Counter.start_link(0)
+Counter.increment()
+Counter.increment()
+Counter.get_value()  # 2</div>
+
+        <div class="info-box">
+            <strong>call vs cast:</strong>
+            <ul>
+                <li><span class="code-inline">call</span> - Synchronous, waits for reply</li>
+                <li><span class="code-inline">cast</span> - Asynchronous, fire and forget</li>
+            </ul>
+        </div>
+
+        <h3>State Management with GenServer</h3>
+        <div class="code-block">defmodule KeyValueStore do
+  use GenServer
+  
+  # Client API
+  def start_link do
+    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
+  end
+  
+  def put(key, value) do
+    GenServer.cast(__MODULE__, {:put, key, value})
+  end
+  
+  def get(key) do
+    GenServer.call(__MODULE__, {:get, key})
+  end
+  
+  def delete(key) do
+    GenServer.cast(__MODULE__, {:delete, key})
+  end
+  
+  def get_all do
+    GenServer.call(__MODULE__, :get_all)
+  end
+  
+  # Server Callbacks
+  @impl true
+  def init(state), do: {:ok, state}
+  
+  @impl true
+  def handle_cast({:put, key, value}, state) do
+    {:noreply, Map.put(state, key, value)}
+  end
+  
+  @impl true
+  def handle_cast({:delete, key}, state) do
+    {:noreply, Map.delete(state, key)}
+  end
+  
+  @impl true
+  def handle_call({:get, key}, _from, state) do
+    {:reply, Map.get(state, key), state}
+  end
+  
+  @impl true
+  def handle_call(:get_all, _from, state) do
+    {:reply, state, state}
+  end
+end</div>
+
+        <h3>Supervisors: Fault Tolerance</h3>
+        <p>Supervisors monitor processes and restart them when they crash. This is the "let it crash" philosophy!</p>
+
+        <div class="code-block">defmodule MyApp.Supervisor do
+  use Supervisor
+  
+  def start_link(init_arg) do
+    Supervisor.start_link(__MODULE__, init_arg, name: __MODULE__)
+  end
+  
+  @impl true
+  def init(_init_arg) do
+    children = [
+      {Counter, 0},
+      {KeyValueStore, []},
+      # More workers...
+    ]
+    
+    # Strategy options:
+    # :one_for_one - restart only crashed child
+    # :one_for_all - restart all children if one crashes
+    # :rest_for_one - restart crashed child and any started after it
+    Supervisor.init(children, strategy: :one_for_one)
+  end
+end</div>
+
+        <div class="practice-section">
+            <h4>Day 4 Practice Exercises</h4>
+            
+            <p><strong>Exercise 1: Counter Process</strong></p>
+            <div class="code-block">defmodule SimpleCounter do
+  def start(initial \\ 0) do
+    spawn(fn -> loop(initial) end)
+  end
+  
+  defp loop(count) do
+    receive do
+      {:increment, caller} ->
+        send(caller, {:ok, count + 1})
+        loop(count + 1)
+      
+      {:get, caller} ->
+        send(caller, {:ok, count})
+        loop(count)
+    end
+  end
+end
+
+# Usage
+pid = SimpleCounter.start(0)
+send(pid, {:increment, self()})
+receive do
+  {:ok, value} -> IO.puts("New value: #{value}")
+end</div>
+            
+            <p><strong>Exercise 2: TodoList GenServer</strong></p>
+            <div class="code-block">defmodule TodoList do
+  use GenServer
+  
+  # Client API
+  def start_link do
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+  end
+  
+  def add_task(task) do
+    GenServer.cast(__MODULE__, {:add, task})
+  end
+  
+  def list_tasks do
+    GenServer.call(__MODULE__, :list)
+  end
+  
+  def complete_task(index) do
+    GenServer.cast(__MODULE__, {:complete, index})
+  end
+  
+  # Server Callbacks
+  @impl true
+  def init(state), do: {:ok, state}
+  
+  @impl true
+  def handle_cast({:add, task}, state) do
+    new_task = %{id: length(state), text: task, completed: false}
+    {:noreply, [new_task | state]}
+  end
+  
+  @impl true
+  def handle_cast({:complete, id}, state) do
+    new_state = Enum.map(state, fn task ->
+      if task.id == id, do: %{task | completed: true}, else: task
+    end)
+    {:noreply, new_state}
+  end
+  
+  @impl true
+  def handle_call(:list, _from, state) do
+    {:reply, Enum.reverse(state), state}
+  end
+end</div>
+            
+            <p><strong>Exercise 3: Supervised Worker</strong></p>
+            <div class="code-block">defmodule CrashableWorker do
+  use GenServer
+  
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
+  end
+  
+  def crash do
+    GenServer.cast(__MODULE__, :crash)
+  end
+  
+  @impl true
+  def init(_), do: {:ok, %{started_at: DateTime.utc_now()}}
+  
+  @impl true
+  def handle_cast(:crash, _state) do
+    raise "Intentional crash for testing!"
+  end
+end
+
+defmodule MyApp.Application do
+  use Application
+  
+  def start(_type, _args) do
+    children = [
+      CrashableWorker
+    ]
+    
+    opts = [strategy: :one_for_one, name: MyApp.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+
+# The supervisor will automatically restart the worker when it crashes!</div>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 5 — Phoenix Fundamentals</h2>
+            <div class="focus">Focus: Web framework basics, MVC, routing, controllers</div>
+        </div>
+
+        <h3>What is Phoenix?</h3>
+        <p>Phoenix is a web framework built on Elixir, designed for building fast, reliable web applications. It's comparable to Rails, Django, or Express, but with built-in support for real-time features.</p>
+
+        <div class="success-box">
+            <strong>Phoenix Advantages:</strong>
+            <ul>
+                <li>Blazing fast performance (often 10-100x faster than Rails)</li>
+                <li>Real-time capabilities out of the box</li>
+                <li>Built on battle-tested OTP</li>
+                <li>Excellent tooling and generators</li>
+                <li>LiveView for reactive UIs without JavaScript</li>
+            </ul>
+        </div>
+
+        <h3>Installing Phoenix</h3>
+        <div class="code-block"># Install Phoenix
+mix archive.install hex phx_new
+
+# Create a new Phoenix project
+mix phx.new my_app
+
+# Create API-only project
+mix phx.new my_app --no-html --no-webpack
+
+# Navigate and setup
+cd my_app
+mix deps.get
+mix ecto.create  # If using database
+
+# Start the server
+mix phx.server
+
+# Server runs on http://localhost:4000</div>
+
+        <h3>Phoenix Architecture</h3>
+        <p>Phoenix follows the MVC (Model-View-Controller) pattern with some additions:</p>
+
+        <table>
+            <tr>
+                <th>Layer</th>
+                <th>Purpose</th>
+                <th>Location</th>
+            </tr>
+            <tr>
+                <td>Router</td>
+                <td>Maps URLs to controllers</td>
+                <td>lib/my_app_web/router.ex</td>
+            </tr>
+            <tr>
+                <td>Controller</td>
+                <td>Handles requests, calls business logic</td>
+                <td>lib/my_app_web/controllers/</td>
+            </tr>
+            <tr>
+                <td>View</td>
+                <td>Renders data for templates</td>
+                <td>lib/my_app_web/views/</td>
+            </tr>
+            <tr>
+                <td>Template</td>
+                <td>HTML/HEEx markup</td>
+                <td>lib/my_app_web/templates/</td>
+            </tr>
+            <tr>
+                <td>Context</td>
+                <td>Business logic layer</td>
+                <td>lib/my_app/</td>
+            </tr>
+            <tr>
+                <td>Schema</td>
+                <td>Database mapping (with Ecto)</td>
+                <td>lib/my_app/schemas/</td>
+            </tr>
+        </table>
+
+        <h3>Routing</h3>
+        <div class="code-block"># lib/my_app_web/router.ex
+defmodule MyAppWeb.Router do
+  use MyAppWeb, :router
+  
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+  
+  scope "/api", MyAppWeb do
+    pipe_through :api
+    
+    get "/health", HealthController, :index
+    get "/users", UserController, :index
+    get "/users/:id", UserController, :show
+    post "/users", UserController, :create
+    put "/users/:id", UserController, :update
+    delete "/users/:id", UserController, :delete
+    
+    # Or use resources
+    resources "/posts", PostController
+  end
+end</div>
+
+        <h3>Controllers</h3>
+        <div class="code-block"># lib/my_app_web/controllers/health_controller.ex
+defmodule MyAppWeb.HealthController do
+  use MyAppWeb, :controller
+  
+  def index(conn, _params) do
+    json(conn, %{status: "ok", timestamp: DateTime.utc_now()})
+  end
+end
+
+# lib/my_app_web/controllers/user_controller.ex
+defmodule MyAppWeb.UserController do
+  use MyAppWeb, :controller
+  
+  def index(conn, _params) do
+    users = [
+      %{id: 1, name: "Shir", email: "shir@example.com"},
+      %{id: 2, name: "John", email: "john@example.com"}
+    ]
+    
+    json(conn, %{data: users})
+  end
+  
+  def show(conn, %{"id" => id}) do
+    user = %{id: id, name: "Shir", email: "shir@example.com"}
+    json(conn, %{data: user})
+  end
+  
+  def create(conn, %{"user" => user_params}) do
+    # In real app, would validate and save to DB
+    case validate_user(user_params) do
+      {:ok, user} ->
+        conn
+        |> put_status(:created)
+        |> json(%{data: user})
+      
+      {:error, errors} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> json(%{errors: errors})
+    end
+  end
+  
+  defp validate_user(params) do
+    # Simple validation
+    if Map.has_key?(params, "name") and Map.has_key?(params, "email") do
+      {:ok, params}
+    else
+      {:error, %{message: "Name and email required"}}
+    end
+  end
+end</div>
+
+        <h3>Plug Pipeline</h3>
+        <p>Plugs are composable modules that transform the connection. They're similar to middleware in Express.</p>
+
+        <div class="code-block">defmodule MyAppWeb.Plugs.Auth do
+  import Plug.Conn
+  
+  def init(opts), do: opts
+  
+  def call(conn, _opts) do
+    case get_req_header(conn, "authorization") do
+      ["Bearer " <> token] ->
+        # Verify token
+        assign(conn, :current_user, get_user_from_token(token))
+      
+      _ ->
+        conn
+        |> put_status(:unauthorized)
+        |> Phoenix.Controller.json(%{error: "Unauthorized"})
+        |> halt()
+    end
+  end
+  
+  defp get_user_from_token(token) do
+    # Token verification logic
+    %{id: 1, name: "Shir"}
+  end
+end
+
+# Use in router
+pipeline :authenticated do
+  plug MyAppWeb.Plugs.Auth
+end
+
+scope "/api/private", MyAppWeb do
+  pipe_through [:api, :authenticated]
+  
+  get "/profile", ProfileController, :show
+end</div>
+
+        <h3>Request Lifecycle</h3>
+        <div class="info-box">
+            <ol>
+                <li>HTTP request arrives at Phoenix endpoint</li>
+                <li>Request goes through plug pipeline</li>
+                <li>Router matches URL to controller action</li>
+                <li>Controller action executes</li>
+                <li>View renders response (HTML, JSON, etc.)</li>
+                <li>Response sent back to client</li>
+            </ol>
+        </div>
+
+        <div class="practice-section">
+            <h4>Day 5 Practice Exercises</h4>
+            
+            <p><strong>Create a Simple JSON API</strong></p>
+            <div class="code-block"># 1. Create project
+mix phx.new todo_api --no-html --no-webpack
+cd todo_api
+
+# 2. Define routes
+# router.ex
+scope "/api", TodoApiWeb do
+  pipe_through :api
+  
+  resources "/tasks", TaskController, except: [:new, :edit]
+end
+
+# 3. Create controller
+# task_controller.ex
+defmodule TodoApiWeb.TaskController do
+  use TodoApiWeb, :controller
+  
+  def index(conn, _params) do
+    tasks = TodoApi.Tasks.list_tasks()
+    json(conn, %{data: tasks})
+  end
+  
+  def create(conn, %{"task" => task_params}) do
+    case TodoApi.Tasks.create_task(task_params) do
+      {:ok, task} ->
+        conn
+        |> put_status(:created)
+        |> json(%{data: task})
+      
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> json(%{errors: changeset})
+    end
+  end
+end</div>
+        </div>
+
+        <div class="day-header">
+            <h2>🟢 DAY 6 — Phoenix LiveView & Real-Time</h2>
+            <div class="focus">Focus: LiveView fundamentals, state management, real-time UIs</div>
+        </div>
+
+        <h3>What is LiveView?</h3>
+        <p>LiveView enables rich, real-time user experiences with server-rendered HTML. Write interactive apps without JavaScript!</p>
+
+        <div class="success-box">
+            <strong>LiveView Benefits:</strong>
+            <ul>
+                <li>No separate frontend framework needed</li>
+                <li>Real-time updates over WebSockets</li>
+                <li>Server-side rendering for SEO</li>
+                <li>Minimal client-side JavaScript</li>
+                <li>Fault-tolerant by default</li>
+            </ul>
+        </div>
+
+        <h3>Basic LiveView</h3>
+        <div class="code-block"># lib/my_app_web/live/counter_live.ex
+defmodule MyAppWeb.CounterLive do
+  use MyAppWeb, :live_view
+  
+  @impl true
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, count: 0)}
+  end
+  
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div class="counter">
+      <h1>Count: <%= @count %></h1>
+      <button phx-click="increment">+</button>
+      <button phx-click="decrement">-</button>
+      <button phx-click="reset">Reset</button>
+    </div>
+    """
+  end
+  
+  @impl true
+  def handle_event("increment", _params, socket) do
+    {:noreply, update(socket, :count, &(&1 + 1))}
+  end
+  
+  def handle_event("decrement", _params, socket) do
+    {:noreply, update(socket, :count, &(&1 - 1))}
+  end
+  
+  def handle_event("reset", _params, socket) do
+    {:noreply, assign(socket, count: 0)}
+  end
+end
+
+# router.ex
+live "/counter", CounterLive</div>
+
+        <h3>LiveView State Management</h3>
+        <div class="code-block">defmodule MyAppWeb.TodoLive do
+  use MyAppWeb, :live_view
+  
+  @impl true
+  def mount(_params, _session, socket) do
+    socket =
+      socket
+      |> assign(tasks: [])
+      |> assign(input: "")
+    
+    {:ok, socket}
+  end
+  
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div class="todo-app">
+      <h1>My Tasks</h1>
+      
+      <form phx-submit="add-task">
+        <input
+          type="text"
+          name="task"
+          value={@input}
+          phx-change="update-input"
+          placeholder="What needs to be done?"
+        />
+        <button type="submit">Add</button>
+      </form>
+      
+      <ul>
+        <%= for {task, index} <- Enum.with_index(@tasks) do %>
+          <li>
+            <span class={if task.completed, do: "completed"}>
+              <%= task.text %>
+            </span>
+            <button phx-click="toggle" phx-value-index={index}>
+              <%= if task.completed, do: "✓", else: "○" %>
+            </button>
+            <button phx-click="delete" phx-value-index={index}>
+              Delete
+            </button>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    """
+  end
+  
+  @impl true
+  def handle_event("update-input", %{"task" => task}, socket) do
+    {:noreply, assign(socket, input: task)}
+  end
+  
+  def handle_event("add-task", %{"task" => task}, socket) do
+    new_task = %{text: task, completed: false}
+    
+    socket =
+      socket
+      |> update(:tasks, &[new_task | &1])
+      |> assign(input: "")
+    
+    {:noreply, socket}
+  end
+  
+  def handle_event("toggle", %{"index" => index}, socket) do
+    index = String.to_integer(index)
+    
+    tasks = Enum.with_index(socket.assigns.tasks)
+    |> Enum.map(fn {task, i} ->
+      if i == index do
+        %{task | completed: !task.completed}
+      else
+        task
+      end
+    end)
+    
+    {:noreply, assign(socket, tasks: tasks)}
+  end
+  
+  def handle_event("delete", %{"index" => index}, socket) do
+    index = String.to_integer(index)
+    tasks = List.delete_at(socket.assigns.tasks, index)
+    {:noreply, assign(socket, tasks: tasks)}
+  end
+end</div>
+
+        <h3>Form Validation</h3>
+        <div class="code-block">defmodule MyAppWeb.RegistrationLive do
+  use MyAppWeb, :live_view
+  
+  @impl true
+  def mount(_params, _session, socket) do
+    changeset = User.changeset(%User{}, %{})
+    {:ok, assign_form(socket, changeset)}
+  end
+  
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div>
+      <h1>Register</h1>
+      
+      <.form
+        for={@form}
+        phx-change="validate"
+        phx-submit="save"
+      >
+        <.input field={@form[:email]} label="Email" />
+        <.input field={@form[:password]} type="password" label="Password" />
+        <button type="submit">Register</button>
+      </.form>
+    </div>
+    """
+  end
+  
+  @impl true
+  def handle_event("validate", %{"user" => user_params}, socket) do
+    changeset =
+      %User{}
+      |> User.changeset(user_params)
+      |> Map.put(:action, :validate)
+    
+    {:noreply, assign_form(socket, changeset)}
+  end
+  
+  def handle_event("save", %{"user" => user_params}, socket) do
+    case Accounts.create_user(user_params) do
+      {:ok, user} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "User created successfully")
+         |> push_navigate(to: "/")}
+      
+      {:error, changeset} ->
+        {:noreply, assign_form(socket, changeset)}
+    end
+  end
+  
+  defp assign_form(socket, changeset) do
+    assign(socket, form: to_form(changeset))
+  end
+end</div>
+
+        <h3>PubSub for Real-Time Updates</h3>
+        <div class="code-block">defmodule MyAppWeb.DashboardLive do
+  use MyAppWeb, :live_view
+  
+  @topic "dashboard:updates"
+  
+  @impl true
+  def mount(_params, _session, socket) do
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(MyApp.PubSub, @topic)
+    end
+    
+    {:ok, assign(socket, metrics: load_metrics())}
+  end
+  
+  @impl true
+  def handle_info({:new_metric, metric}, socket) do
+    metrics = [metric | socket.assigns.metrics]
+    {:noreply, assign(socket, metrics: metrics)}
+  end
+  
+  # In another module (e.g., a GenServer)
+  def broadcast_metric(metric) do
+    Phoenix.PubSub.broadcast(
+      MyApp.PubSub,
+      @topic,
+      {:new_metric, metric}
+    )
+  end
+end</div>
+
+        <div class="practice-section">
+            <h4>Day 6 Practice Exercises</h4>
+            
+            <p><strong>Exercise 1: Real-Time Counter with Broadcast</strong></p>
+            <div class="code-block">defmodule MyAppWeb.SharedCounterLive do
+  use MyAppWeb, :live_view
+  
+  @topic "counter:updates"
+  
+  def mount(_params, _session, socket) do
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(MyApp.PubSub, @topic)
+    end
+    
+    {:ok, assign(socket, count: 0)}
+  end
+  
+  def render(assigns) do
+    ~H"""
+    <div>
+      <h1>Shared Counter: <%= @count %></h1>
+      <button phx-click="inc">Increment</button>
+      <p>Changes are live across all connected users!</p>
+    </div>
+    """
+  end
+  
+  def handle_event("inc", _,socket) do
+    new_count = socket.assigns.count + 1
+    
+    Phoenix.PubSub.broadcast(
+      MyApp.PubSub,
+      @topic,
+      {:count_updated, new_count}
+    )
+    
+    {:noreply, assign(socket, count: new_count)}
+  end
+  
+  def handle_info({:count_updated, count}, socket) do
+    {:noreply, assign(socket, count: count)}
+  end
+end</div>
+        </div>
+
+        <div class="day-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <h2>🔵 DAY 7 — Full Project: Real-Time Task Board</h2>
+            <div class="focus">Putting it all together</div>
+        </div>
+
+        <div class="project-box">
+            <h3>🧩 Project Overview</h3>
+            <p>Build a collaborative task board where multiple users can create, update, and track tasks in real-time.</p>
+            
+            <h4>Features to Implement:</h4>
+            <ul>
+                <li>Create new tasks</li>
+                <li>Update task status (todo → in_progress → done)</li>
+                <li>Edit task details</li>
+                <li>Delete tasks</li>
+                <li>Real-time synchronization across all connected users</li>
+                <li>Task filtering by status</li>
+                <li>Persistent storage (optional: start with in-memory)</li>
+            </ul>
+        </div>
+
+        <h3>Project Structure</h3>
+        <div class="code-block"># Generate new Phoenix project
+mix phx.new task_board --live
+cd task_board
+mix ecto.create</div>
+
+        <h3>Step 1: Context & Schema</h3>
+        <div class="code-block"># Generate context
+mix phx.gen.context Tasks Task tasks title:string description:text status:string
+
+# This creates:
+# - lib/task_board/tasks.ex (context)
+# - lib/task_board/tasks/task.ex (schema)
+# - priv/repo/migrations/*_create_tasks.exs
+
+# Run migration
+mix ecto.migrate
